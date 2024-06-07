@@ -1,6 +1,14 @@
 import app from './app';
+import connectDB from './db';
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Listening http://localhost:${port}`);
-});
+
+async function run() {
+  await connectDB();
+
+  app.listen(port, () => {
+    console.log(`Listening http://localhost:${port}`);
+  });
+}
+
+run();
