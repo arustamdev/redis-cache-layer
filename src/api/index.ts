@@ -1,14 +1,8 @@
 import express from 'express';
-import fruitsRoute from './fruits';
+import productsRoute from './products';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.json({
-    message: 'Hello from api!',
-  });
-});
-
-router.use('/fruits', fruitsRoute);
+router.use('/products', productsRoute);
 
 export default router;
