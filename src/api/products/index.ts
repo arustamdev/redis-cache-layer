@@ -1,20 +1,11 @@
 import express from 'express';
-import ProductModel from '../../models/Product';
 
 const router = express.Router();
 
-router.get('/search', async (req, res, next) => {
-  const query = req.query.q;
+import search from './search';
+import topDiscount from './topDiscount';
 
-  try {
-    const products = await ProductModel.find({ title: { $regex: query, $options: 'i' } });
-
-    res.status(200).json({
-      products,
-    });
-  } catch (error) {
-    next(error);
-  }
-});
+router.get('/search', search);
+router.get('/topDiscount', topDiscount);
 
 export default router;
