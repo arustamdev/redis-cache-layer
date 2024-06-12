@@ -6,7 +6,12 @@ async function connectDB() {
   const username = process.env.MONGO_USERNAME;
   const password = process.env.MONGO_PASSWORD;
   const database = process.env.MONGO_DATABASE;
-  await mongoose.connect(`mongodb://${username}:${password}@${host}:${port}/${database}?authSource=admin`);
+  try {
+    await mongoose.connect(`mongodb://${username}:${password}@${host}:${port}/${database}?authSource=admin`);
+    console.log('mongodb connected');
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 export default connectDB;
