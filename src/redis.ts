@@ -1,11 +1,12 @@
-import { createClient } from 'redis';
+import { createClient, RedisDefaultModules, RedisFunctions, RedisModules, RedisScripts } from 'redis';
+import { RedisClientType } from 'redis';
 
-let client;
+let redisClient: RedisClientType<RedisDefaultModules & RedisModules, RedisFunctions, RedisScripts>;
 
 async function connectRedis() {
   const url = process.env.REDIS_URL;
   try {
-    client = await createClient({ url: url })
+    redisClient = await createClient({ url: url })
       .on('error', (err) => console.log('Redis Client Error', err))
       .connect();
     console.log('Redis connected');
@@ -14,4 +15,4 @@ async function connectRedis() {
   }
 }
 
-export { client, connectRedis };
+export { redisClient, connectRedis };

@@ -13,7 +13,7 @@ async function bestReview(req: Request, res: Response, next: NextFunction) {
         $sort: { reviewsRating: -1 },
       },
       {
-        $limit: 3,
+        $limit: 5,
       },
       {
         $project: {
